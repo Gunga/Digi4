@@ -32,7 +32,7 @@
 
 //turn?         // almost deprecated
                 // checks value of boardState[0] -- only useful for AI
-
+iter = 0
 var GameController = function(board, view){
     var that = this;
     this.board = board;
@@ -51,9 +51,9 @@ GameController.prototype = {
 
     checkForWin: function(){
 
-        this.checkRowsForWin();
-        this.checkColumnsForWin();
-        this.checkDiagonalsForWin();
+        // this.checkRowsForWin();
+        // this.checkColumnsForWin();
+        // this.checkDiagonalsForWin();
 
         return this.win;
     },
@@ -61,7 +61,7 @@ GameController.prototype = {
     checkRowsForWin: function(){
         for (var i = 1; i <= 6; i++) {
             var row = this.board.getRow(i);
-            if (row.match(/[1]{4}?[0]{4}?/))
+            if (row.match(/[1]{4}?[2]{4}?/))
                 this.win = true;
         };
     },
@@ -69,7 +69,7 @@ GameController.prototype = {
     checkColumnsForWin: function(){
         for (var i = 1; i <= 7; i++) {
             var column = this.board.getColumn(i);
-            if (column.match(/[1]{4}?[0]{4}?/))
+            if (column.match(/[1]{4}?[2]{4}?/))
                 this.win = true;
         };
     },
@@ -77,13 +77,13 @@ GameController.prototype = {
     checkDiagonalsForWin: function(){
         for (var i = 1; i <= 12; i++) {
             var diagonal = this.board.getDiagonal(i,"backslash");
-            if (diagonal.match(/[1]{4}?[0]{4}?/))
+            if (diagonal.match(/[1]{4}?[2]{4}?/))
                 this.win = true;
         };
 
         for (var i = 1; i <= 12; i++) {
             var diagonal = this.board.getDiagonal(i, "slash");
-            if (diagonal.match(/[1]{4}?[0]{4}?/))
+            if (diagonal.match(/[1]{4}?[2]{4}?/))
                 this.win = true;
         };
     },
@@ -96,14 +96,14 @@ GameController.prototype = {
     },
 
     placeToken: function(column){
-        console.log("Column: ", column);
-        this.updateBoard(column)
+
+        index = this.updateBoard(column)
+
+        // this.view.updateDisplay(index);
     },
 
     updateBoard: function(column){
-        index = this.board.updateBoard(column);
-
-        this.view.updateDisplay(index);
+        return this.board.updateBoard(column);
     },
 
     turn: function(){
@@ -113,14 +113,22 @@ GameController.prototype = {
     gameLogic: function(e){
         e.preventDefault();
 
-        this.placeToken(e.target.id);       
+        this.placeToken(e.target.id);
 
-        if (this.checkForWin()){ 
+        if (this.checkForWin()){
             this.view.winnerAlert();
         }else{
             this.changeTurn();
         }
 
+    }, testView: function(){
+        var that = this
+        var interval = setInterval( function(){
+            console.log(iter+1);
+            that.view.updateDisplay(iter++);
+            that.view.updateTurnIndicator();
+            if (iter == 42+1) clearInterval(interval);
+        }, 200 );
     }
 
 }
