@@ -9,7 +9,7 @@
 //            calls get rol/col/diag for each appropriate num
 //            searches for four in a row
 //            if win, calls:
-               // winnerAlert
+               // gameOver
                // resetGame
 
 // game logic input is onClick
@@ -39,7 +39,9 @@ var GameController = function(board, view){
     this.view = view;
     this.win = false;
     this.turnIndicator = board.boardState[0];
-     $('form').on('click', this.gameLogic.bind(that));
+    this.regex = /([1]{4}|[2]{4})/
+
+    $('form').on('click', this.gameLogic.bind(that));
 }
 
 GameController.prototype = {
@@ -60,29 +62,33 @@ GameController.prototype = {
     checkRowsForWin: function(){
         for (var i = 1; i <= 6; i++) {
             var row = this.board.getRow(i);
-            if (row.match(/[1]{4}?[2]{4}?/))
+            if (row.match(this.regex)){
+                console.log("MATCH!");
                 this.win = true;
+            }
         };
     },
 
     checkColumnsForWin: function(){
         for (var i = 1; i <= 7; i++) {
             var column = this.board.getColumn(i);
-            if (column.match(/[1]{4}?[2]{4}?/))
+            if (column.match(this.regex)){
+                console.log("MATCH!");
                 this.win = true;
+            }
         };
     },
 
     checkDiagonalsForWin: function(){
         for (var i = 1; i <= 12; i++) {
             var diagonal = this.board.getDiagonal(i,"backslash");
-            if (diagonal.match(/[1]{4}?[2]{4}?/))
+            if (diagonal.match(this.regex))
                 this.win = true;
         };
 
         for (var i = 1; i <= 12; i++) {
             var diagonal = this.board.getDiagonal(i, "slash");
-            if (diagonal.match(/[1]{4}?[2]{4}?/))
+            if (diagonal.match(this.regex))
                 this.win = true;
         };
     },
@@ -115,7 +121,7 @@ GameController.prototype = {
         this.placeToken(e.target.id);
 
         if (this.checkForWin()){
-            this.view.winnerAlert();
+            this.view.gameOver();
         }else{
             this.changeTurn();
         }
