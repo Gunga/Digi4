@@ -6,8 +6,6 @@
 
 var View = function(){
   this.player = 0;
-
-
 }
 
 View.prototype = {
@@ -26,5 +24,10 @@ View.prototype = {
     this.player ^= 1
       changePlayer = this.player + 1;
         $('.your-turn').attr('class', 'your-turn player-'+ changePlayer);
+  },
+
+  gameOver: function() {
+    $('.winner').css ('display', 'block');
   }
 };
+
