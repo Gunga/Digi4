@@ -40,7 +40,6 @@ var GameController = function(board, view){
     this.win = false;
     this.turnIndicator = board.boardState[0];
      $('form').on('click', this.gameLogic.bind(that));
-
 }
 
 GameController.prototype = {
@@ -51,8 +50,8 @@ GameController.prototype = {
 
     checkForWin: function(){
 
-        // this.checkRowsForWin();
-        // this.checkColumnsForWin();
+        this.checkRowsForWin();
+        this.checkColumnsForWin();
         // this.checkDiagonalsForWin();
 
         return this.win;
@@ -99,7 +98,7 @@ GameController.prototype = {
 
         index = this.updateBoard(column)
 
-        // this.view.updateDisplay(index);
+        this.view.updateDisplay(index);
     },
 
     updateBoard: function(column){
@@ -130,7 +129,6 @@ GameController.prototype = {
             if (iter == 42+1) clearInterval(interval);
         }, 200 );
     }
-
 }
 
 gc = new GameController(new Board(),new View());
