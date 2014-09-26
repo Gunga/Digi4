@@ -1,21 +1,68 @@
-.container {
-    margin: 20px auto;
-    width: 600px;
-    padding: 0px 20px 20px 20px;
-    border: 1px dotted black;
-    text-align: center;
-}
-th {
-    text-align: left;
+body {
+  background-color: #313131;
 }
 
-#cfour-board li{
+h1, h2 {
+  font-family: 'Londrina Outline', cursive;
+}
+
+header {
+  margin: 3%;
+  border: 0.25em solid #DF740C;
+  background-color: #0C141F;
+  text-align: center;
+  height: 10em;
+  color: #6FC3DF;
+}
+
+form {
+  margin-left: 5%;
+}
+
+button {
+  border-radius: 18px;
+  padding: 0 4%;
+  margin: 0 1%;
+}
+
+.title {
+  position: absolute;
+  left: auto;
+  width: 77%;
+}
+
+.turn-indicator {
+  border-left: 0;
+  float: right;
+  width: 17%;
+  height: 97%;
+}
+
+.your-turn {
+  background-color: #E6FFFF;
+  height: 53%;
+  width: 76%;
+  margin-left: 14%;
+}
+
+
+input[type="submit"] {
+  border-radius: 18px;
+  padding: 0 4%;
+  margin: 0 1%;
+}
+
+ul.cfour-board {
+  margin: 2% 0 0 2%;
+}
+
+.cfour-board li{
  	display:block;
  	width:13%;
  	float:left;
  	height:100px;
- 	border:solid black 2px;
- 	margin:2px;
+ 	border:solid #DF740C 3px;
+  background-color: #0C141F;
 }
 
 #get_color{
@@ -26,4 +73,12 @@ th {
 	margin:10px auto;
 	display:inline-block;
 	padding:5px;
+ }
+
+ .player-1 {
+  background-color: #FFE64D;
+ }
+
+ .player-2 {
+  background-color: #6FC3DF;
  }
