@@ -49,7 +49,7 @@ article {
 }
 
 .your-turn {
-  background-color: #E6FFFF;
+  background-color: #FFE64D;
   height: 53%;
   width: 53%;
   margin-left: 26%;
@@ -88,10 +88,10 @@ input[type="submit"]:focus {
 	padding:5px;
  }
 
- .player-1 {
+ .your-turn.player-1, li.player-1 {
   background-color: #FFE64D;
  }
 
- .player-2 {
+ .your-turn.player-2, li.player-2 {
   background-color: #6FC3DF;
  }
