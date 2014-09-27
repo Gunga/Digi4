@@ -54,7 +54,7 @@ GameController.prototype = {
 
         this.checkRowsForWin();
         this.checkColumnsForWin();
-        // this.checkDiagonalsForWin();
+        this.checkDiagonalsForWin();
 
         return this.win;
     },

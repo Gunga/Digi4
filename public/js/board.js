@@ -14,14 +14,12 @@ var Board = function(){
   this.boardState =
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 // ===================================================================
-//  TEST ARRAY 'FOO' - WILL CREATE 43 ELEMENT ARRAY WITH INTEGERS 0-42
-// ===================================================================
-  var foo = [];
-  for (var i = 0; i <= 42; i++) {
-     foo.push(i);
-  }
-  this.boardState = foo
-// ===================================================================
+//    TEST ARRAY 'FOO' WILL CREATE 43 ELEMENT ARRAY WITH INTEGERS 0-42
+//   var foo = [];
+//   for (var i = 0; i <= 42; i++) {
+//      foo.push(i);
+//   }
+//   this.boardState = foo
 //                 REMOVE TEST ARRAY FOR PRODUCTION !!!
 // ===================================================================
 };
@@ -44,8 +42,7 @@ Board.prototype = {
     }
     return col.join("")
   },
-  // getDiagonal should take in num and 'slash/backslash'
-  // returns strying of values for diag
+
   getDiagonal: function(diagNum, direction){
     var diagonal = [];
     var n = 7; // set n to row.length for nxn board
@@ -83,22 +80,19 @@ Board.prototype = {
   // GOTCHA! Check Boardstate dependency of boardState[0] on changing i to 1 or 2
   updateBoard: function(colNum){
     var columnPositions = this.updateBoardHelper(colNum); // array [i, i...]
-    var columnValues = this.getColumn(colNum);            // string "val1val2"
-    var emptyCell = columnValues.lastIndexOf("0");        //will return 0-5
 
-    // check for validity, if invalid, return integer 43
-    if ($.inArray("0", this.boardState) == -1){
-      return 43
-      }
-    else {
-      if (this.boardState[0] == 0){
-        this.boardState[columnPositions[emptyCell]] = 1;
-      }
-      if (this.boardState[0] == 1){
-        this.boardState[columnPositions[emptyCell]] = 2;
+
+
+
+    var columnValues = this.getColumn(colNum);            // string "val1val2"
+    var emptyCell = columnValues.lastIndexOf("0");   //will return 0-5
+
+    if (this.boardState[0] == 0)
+      this.boardState[columnPositions[emptyCell]] = 1;
+    if (this.boardState[0] == 1)
+      this.boardState[columnPositions[emptyCell]] = 2;
+
     return columnPositions[emptyCell]
-    }
-  }
 
   },
   reset: function(){
@@ -106,4 +100,3 @@ Board.prototype = {
   }
 };
 var test = new Board();
-
