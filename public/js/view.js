@@ -30,4 +30,8 @@ View.prototype = {
     $('.winner').css ('display', 'block');
   }
 };
+$('.winner').on("click", refresh)
 
+function refresh(){
+  location.reload();
+}
