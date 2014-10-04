@@ -16,11 +16,11 @@ var Board = function(){
 // ===================================================================
 //  TEST ARRAY 'FOO' - WILL CREATE 43 ELEMENT ARRAY WITH INTEGERS 0-42
 // ===================================================================
-  var foo = [];
-  for (var i = 0; i <= 42; i++) {
-     foo.push(i);
-  }
-  this.boardState = foo
+  // var foo = [];
+  // for (var i = 0; i <= 42; i++) {
+  //    foo.push(i);
+  // }
+  // this.boardState = foo
 // ===================================================================
 //                 REMOVE TEST ARRAY FOR PRODUCTION !!!
 // ===================================================================
@@ -69,7 +69,6 @@ Board.prototype = {
       return diagonal.join("")
     }
   },
-
   // returns indicies of column
   updateBoardHelper: function(colNum){
     var col = [];
@@ -86,10 +85,9 @@ Board.prototype = {
     var columnValues = this.getColumn(colNum);            // string "val1val2"
     var emptyCell = columnValues.lastIndexOf("0");        //will return 0-5
 
-    // check for validity, if invalid, return integer 43
-    if ($.inArray("0", this.boardState) == -1){
+    if (columnValues.indexOf("0") == -1) {
       return 43
-      }
+    }
     else {
       if (this.boardState[0] == 0){
         this.boardState[columnPositions[emptyCell]] = 1;
